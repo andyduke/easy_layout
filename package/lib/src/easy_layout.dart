@@ -19,7 +19,8 @@ class EasyLayout extends StatelessWidget {
         super(key: key);
 
   static EasyLayout of(BuildContext context) {
-    final scope = context.dependOnInheritedWidgetOfExactType<_EasyLayoutScope>();
+    final scope =
+        context.dependOnInheritedWidgetOfExactType<_EasyLayoutScope>();
     return scope?.layout;
   }
 

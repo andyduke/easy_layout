@@ -28,7 +28,8 @@ class EasyLayoutAutoWrap extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final mode = (constraints.maxWidth <= toggleWidth) ? narrowMode : wideMode;
+        final mode =
+            (constraints.maxWidth <= toggleWidth) ? narrowMode : wideMode;
         if (mode == Axis.vertical) {
           return EasyLayoutColumn(
             spacing: vSpacing,

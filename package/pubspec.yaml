@@ -2,9 +2,9 @@ name: easy_layout
 description: A set of widgets that make it easy to create a layout with specified spacing between child widgets.
 version: 0.1.0
 author: Andy Chentsov
-homepage:
-repository: 
-issues:
+homepage: https://github.com/andyduke/easy_layout/tree/master/package
+repository: https://github.com/andyduke/easy_layout
+issues: https://github.com/andyduke/easy_layout/issues
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
