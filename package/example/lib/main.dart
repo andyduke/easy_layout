@@ -27,6 +27,7 @@ class ExampleScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(vertical: 32),
           child: EasyLayout(
             // hSpacing: 24,
             // vSpacing: 16,
@@ -104,6 +105,92 @@ class ExampleScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+
+                // EasyLayoutRow with Dividers
+                EasyLayoutRow(
+                  children: [
+                    Container(
+                      width: 100,
+                      height: 100,
+                      color: Colors.orange,
+                    ),
+                    EasyLayoutSpacing(
+                      hSpacing: 50,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 100,
+                      color: Colors.teal,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 100,
+                      color: Colors.amber,
+                    ),
+                  ],
+                ),
+
+                // Generic Row with Dividers
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        color: Colors.orange,
+                      ),
+                    ),
+                    EasyLayoutSpacing(
+                      hSpacing: 50,
+                    ),
+                    Expanded(
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        color: Colors.teal,
+                      ),
+                    ),
+                    EasyLayoutSpacing(),
+                    Expanded(
+                      child: Builder(
+                        builder: (context) => Container(
+                          width: 100,
+                          height: 100,
+                          color: Colors.amber,
+                          alignment: Alignment.center,
+                          child: Text(
+                              'h: ${EasyLayout.of(context)?.hSpacing}, v: ${EasyLayout.of(context)?.vSpacing}',
+                              style: TextStyle(color: Colors.white)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+                // Fluid
+                EasyLayoutFluid(
+                  children: [
+                    Fluidable(
+                      fluid: 1,
+                      minWidth: 200,
+                      child: Container(
+                        height: 100,
+                        color: Colors.orange,
+                      ),
+                    ),
+                    Fluidable(
+                      fluid: 1,
+                      minWidth: 300,
+                      child: Container(
+                        height: 100,
+                        color: Colors.teal,
+                      ),
+                    ),
+                  ],
+                ),
+
+                //
               ],
             ),
           ),

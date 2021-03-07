@@ -1,7 +1,13 @@
-import 'package:easy_layout/easy_layout.dart';
 import 'package:flutter/widgets.dart';
-import 'package:intersperse/intersperse.dart';
+import '_intersperse.dart';
+import 'easy_layout.dart';
+import 'easy_layout_spacing.dart';
 
+/// A widget that displays its children in a vertical array
+/// like a [Column] widget, but with vertical spacing.
+///
+/// By default inherits spacing from parent [EasyLayout].
+///
 class EasyLayoutColumn extends StatelessWidget {
   final List<Widget> children;
   final double spacing;
@@ -19,11 +25,14 @@ class EasyLayoutColumn extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
-      children: children
-          .intersperse(
-            SizedBox(height: vSpacing),
-          )
-          .toList(),
+      children: intersperseCustom<Widget>(
+        (element, previous) {
+          if (element is EasyLayoutSpacing || previous is EasyLayoutSpacing)
+            return null;
+          return SizedBox(height: vSpacing);
+        },
+        children,
+      ).toList(),
     );
   }
 }

@@ -1,6 +1,6 @@
 # EasyLayout
 
-A set of widgets that make it easy to create a layout with specified spacing between child widgets.
+A set of widgets that make it easy to create a layout system with a specified spacing between child widgets. Spacings can be inherited by nested widgets.
 
 ## Getting Started
 
@@ -28,7 +28,7 @@ EasyLayout(
 )
 ```
 
-Inside the `EasyLayout` with the specified child spacings, you can nest another `EasyLayout` with different child spacings, and all `EasyLayoutColumn`, `EasyLayoutRow` and `EasyLayoutAuto` within it will inherit the new values. 
+Inside the `EasyLayout` with the specified child spacings, you can nest another `EasyLayout` with different child spacings, and all `EasyLayoutColumn`, `EasyLayoutRow` and `EasyLayoutAuto` within it will inherit the new values. Unspecified spacing will be inherited from parent EasyLayout.
 ```dart
 EasyLayout(
   hSpacing: 24,
@@ -216,3 +216,16 @@ EasyLayout(
   ),
 )
 ```
+
+### Fluid layout
+
+You can use the `EasyLayoutFluid` widget for a fluid layout to build a responsive interface.
+
+This is a wrapper around the [Fluid](https://pub.dev/packages/fluid_kit) widget, but uses the spacing from `EasyLayout`.
+
+
+### Spacing widget
+
+It is possible to set the spacing between **some** child widgets different from that set in `EasyLayout` using `EasyLayoutSpacing`.
+
+And you can also use `EasyLayoutSpacing` to set the spacing corresponding to that specified in `EasyLayout` for widgets inside `Column`, `Row`, `Flex`.

@@ -1,58 +1,94 @@
 import 'package:flutter/widgets.dart';
 
+/// Sets a layout system with spacings for child widgets.
+///
+/// [EasyLayoutColumn], [EasyLayoutRow], [EasyLayoutAuto] and [EasyLayoutDivider]
+/// widgets must be nested in at least one [EasyLayout] widget.
+///
+/// The default spacing values can be set through the static properties
+/// `EasyLayout.defaultHSpacing` and `EasyLayout.defaultVSpacing`.
+///
+/// In any widget below [EasyLayout] in the tree, you can get spacing values
+/// using `EasyLayout.of(context).hSpacing` and `EasyLayout.of(context).vSpacing`.
+///
+/// When using inline in a tree, you need to wrap the widget in a [Builder]
+/// to pass the [EasyLayout] context inside:
+/// ```dart
+/// EasyLayout(
+///   hSpacing: 24,
+///   vSpacing: 32,
+///   child: Builder(
+///     builder: (context) => Text('Horizontal spacing: ${EasyLayout.of(context).hSpacing}'),
+///   ),
+/// )
+/// ```
+///
 class EasyLayout extends StatelessWidget {
   static double defaultHSpacing = 24;
   static double defaultVSpacing = 32;
 
+  /// The widget below this widget in the tree.
   final Widget child;
-  final double _hSpacing;
-  final double _vSpacing;
+
+  /// Merge with parent [EasyLayout]
+  final bool merge;
+
+  /// Horizontal spacing
+  final double hSpacing;
+
+  /// Vertical spacing
+  final double vSpacing;
 
   const EasyLayout({
     Key key,
-    double hSpacing,
-    double vSpacing,
+    this.hSpacing,
+    this.vSpacing,
     @required this.child,
+    this.merge = true,
   })  : assert(child != null),
-        _hSpacing = hSpacing,
-        _vSpacing = vSpacing,
         super(key: key);
 
-  static EasyLayout of(BuildContext context) {
-    final scope =
-        context.dependOnInheritedWidgetOfExactType<_EasyLayoutScope>();
-    return scope?.layout;
+  static EasyLayoutScope of(BuildContext context) {
+    final scope = context.dependOnInheritedWidgetOfExactType<EasyLayoutScope>();
+    return scope;
   }
-
-  /// Horizontal spacing
-  double get hSpacing => _hSpacing ?? defaultHSpacing;
-
-  /// Vertical spacing
-  double get vSpacing => _vSpacing ?? defaultVSpacing;
 
   @override
   Widget build(BuildContext context) {
-    return _EasyLayoutScope(
+    final EasyLayoutScope parent =
+        (merge && ((hSpacing == null) || (vSpacing == null)))
+            ? EasyLayout.of(context)
+            : null;
+    return EasyLayoutScope(
       child: child,
-      layout: this,
+      hSpacing: hSpacing ?? parent?.hSpacing ?? defaultHSpacing,
+      vSpacing: vSpacing ?? parent?.vSpacing ?? defaultVSpacing,
     );
   }
 }
 
-class _EasyLayoutScope extends InheritedWidget {
-  final EasyLayout layout;
+/// Scope of [EasyLayout] containing values for horizontal and
+/// vertical spacing. Can be accessed using `EasyLayout.of (context)`.
+///
+class EasyLayoutScope extends InheritedWidget {
+  /// Horizontal spacing
+  final double hSpacing;
 
-  _EasyLayoutScope({
+  /// Vertical spacing
+  final double vSpacing;
+
+  EasyLayoutScope({
     Key key,
     @required Widget child,
-    @required this.layout,
+    @required this.hSpacing,
+    @required this.vSpacing,
   }) : super(
           key: key,
           child: child,
         );
 
   @override
-  bool updateShouldNotify(covariant _EasyLayoutScope oldWidget) {
-    return (oldWidget.layout != layout);
+  bool updateShouldNotify(covariant EasyLayoutScope oldWidget) {
+    return (oldWidget.hSpacing != hSpacing) || (oldWidget.vSpacing != vSpacing);
   }
 }
