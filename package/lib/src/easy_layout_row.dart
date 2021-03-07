@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import '_intersperse.dart';
 import 'easy_layout.dart';
+import 'easy_layout_flexible.dart';
 import 'easy_layout_spacing.dart';
 
 /// A widget that displays its children in a horizontal array

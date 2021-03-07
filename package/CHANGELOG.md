@@ -1,4 +1,4 @@
-## 1.0.0
+## 1.0.0+1
 
 * EasyLayout now inherits spacing from parent EasyLayout
 * Added EasyLayoutSpacing widget
