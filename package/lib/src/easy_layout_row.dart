@@ -6,20 +6,29 @@ import 'easy_layout_spacing.dart';
 
 /// A widget that displays its children in a horizontal array
 /// like a [Row] widget, but with vertical spacing and
-/// expanding the children.
+/// expanding the children (optional).
 ///
 /// By default inherits spacing from parent [EasyLayout].
 ///
 class EasyLayoutRow extends StatelessWidget {
+  /// The widgets below this widget in the tree.
   final List<Widget> children;
+
+  /// Space between children.
   final double spacing;
+
+  /// How the children should be placed along the main axis.
   final MainAxisAlignment alignment;
+
+  /// Stretch items to fill the entire row.
+  final bool expand;
 
   const EasyLayoutRow({
     Key key,
     this.spacing,
     @required this.children,
     this.alignment = MainAxisAlignment.spaceBetween,
+    this.expand = true,
   })  : assert(children != null),
         super(key: key);
 
@@ -42,10 +51,12 @@ class EasyLayoutRow extends StatelessWidget {
             if (child is EasyLayoutSpacing) return child;
 
             final int flex = (child is EasyLayoutFlexible) ? child.flex : 1;
-            return Expanded(
-              flex: flex,
-              child: child,
-            );
+            return expand
+                ? Expanded(
+                    flex: flex,
+                    child: child,
+                  )
+                : child;
           },
         ),
       ).toList(),

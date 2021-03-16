@@ -8,7 +8,7 @@ import 'package:flutter/widgets.dart';
 ///
 class EasyLayoutFlexible extends StatelessWidget {
   final Widget child;
-  final double flex;
+  final int flex;
 
   const EasyLayoutFlexible({
     Key key,
