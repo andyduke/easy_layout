@@ -9,13 +9,21 @@ import 'easy_layout_spacing.dart';
 /// By default inherits spacing from parent [EasyLayout].
 ///
 class EasyLayoutColumn extends StatelessWidget {
+  /// The widgets below this widget in the tree.
   final List<Widget> children;
+
+  /// Space between children.
   final double spacing;
+
+  /// How the children should be placed along the cross axis.
+  /// The default is [CrossAxisAlignment.stretch].
+  final CrossAxisAlignment alignment;
 
   const EasyLayoutColumn({
     Key key,
     this.spacing,
     @required this.children,
+    this.alignment = CrossAxisAlignment.stretch,
   })  : assert(children != null),
         super(key: key);
 
@@ -23,7 +31,7 @@ class EasyLayoutColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     final double vSpacing = spacing ?? EasyLayout.of(context)?.vSpacing ?? 0;
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+      crossAxisAlignment: alignment,
       mainAxisSize: MainAxisSize.min,
       children: intersperseCustom<Widget>(
         (element, previous) {

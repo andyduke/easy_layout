@@ -1,3 +1,7 @@
+## 1.0.2
+
+* An `alignment` property has been added to the `EasyLayoutColumn` widget, similar to the `crossAxisAlignment` property in the `Column` widget.
+
 ## 1.0.1
 
 * An `expand` property has been added to `EasyLayoutRow` to control how items are filled in a row. 
