@@ -1,3 +1,7 @@
+## 2.0.0-nullsafety.0
+
+* Migrate to null safety.
+
 ## 1.0.2
 
 * An `alignment` property has been added to the `EasyLayoutColumn` widget, similar to the `crossAxisAlignment` property in the `Column` widget.

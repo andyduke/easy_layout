@@ -1,9 +1,9 @@
 // Based on the intersperse package from modulovalue.com
 
-typedef IntersperseElementBuilder<T> = T Function(T element, T previous);
+typedef IntersperseElementBuilder<T> = T? Function(T? element, T? previous);
 
 Iterable<T> intersperseCustom<T>(
-    IntersperseElementBuilder elementBuilder, Iterable<T> iterable) sync* {
+    IntersperseElementBuilder<T> elementBuilder, Iterable<T> iterable) sync* {
   final iterator = iterable.iterator;
   if (iterator.moveNext()) {
     T previous;

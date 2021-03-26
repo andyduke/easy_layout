@@ -8,21 +8,21 @@ import 'easy_layout.dart';
 /// Can be used in [EasyLayoutColumn], [EasyLayoutRow] and [EasyLayoutAuto],
 /// as well as [Column] and [Row].
 class EasyLayoutSpacing extends StatelessWidget {
-  final double hSpacing;
-  final double vSpacing;
+  final double? hSpacing;
+  final double? vSpacing;
 
   const EasyLayoutSpacing({
-    Key key,
+    Key? key,
     this.hSpacing,
     this.vSpacing,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final EasyLayoutScope parent = EasyLayout.of(context);
+    final EasyLayoutScope? parent = EasyLayout.of(context);
     return SizedBox(
-      width: hSpacing ?? parent?.hSpacing,
-      height: vSpacing ?? parent?.vSpacing,
+      width: hSpacing ?? parent?.hSpacing ?? EasyLayout.defaultHSpacing,
+      height: vSpacing ?? parent?.vSpacing ?? EasyLayout.defaultVSpacing,
     );
   }
 }

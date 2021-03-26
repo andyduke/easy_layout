@@ -13,23 +13,24 @@ class EasyLayoutColumn extends StatelessWidget {
   final List<Widget> children;
 
   /// Space between children.
-  final double spacing;
+  final double? spacing;
 
   /// How the children should be placed along the cross axis.
   /// The default is [CrossAxisAlignment.stretch].
   final CrossAxisAlignment alignment;
 
   const EasyLayoutColumn({
-    Key key,
+    Key? key,
     this.spacing,
-    @required this.children,
+    required this.children,
     this.alignment = CrossAxisAlignment.stretch,
-  })  : assert(children != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final double vSpacing = spacing ?? EasyLayout.of(context)?.vSpacing ?? 0;
+    final double vSpacing = spacing ??
+        EasyLayout.of(context)?.vSpacing ??
+        EasyLayout.defaultVSpacing;
     return Column(
       crossAxisAlignment: alignment,
       mainAxisSize: MainAxisSize.min,

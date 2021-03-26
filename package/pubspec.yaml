@@ -1,19 +1,19 @@
 name: easy_layout
 description: A set of widgets that make it easy to create a layout system with a specified spacing between child widgets. Spacings can be inherited by nested widgets.
-version: 1.0.2
+version: 2.0.0-nullsafety.0
 author: Andy Chentsov
 homepage: https://github.com/andyduke/easy_layout/tree/master/package
 repository: https://github.com/andyduke/easy_layout
 issues: https://github.com/andyduke/easy_layout/issues
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  fluid_kit: ^1.0.1
+  fluid_kit: ^2.0.0-nullsafety.0
   # intersperse: ^1.1.1
 
 dev_dependencies:

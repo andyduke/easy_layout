@@ -8,14 +8,13 @@ import 'package:flutter/widgets.dart';
 ///
 class EasyLayoutFlexible extends StatelessWidget {
   final Widget child;
-  final int flex;
+  final int? flex;
 
   const EasyLayoutFlexible({
-    Key key,
+    Key? key,
     this.flex,
-    @required this.child,
-  })  : assert(child != null),
-        super(key: key);
+    required this.child,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

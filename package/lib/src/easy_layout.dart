@@ -34,28 +34,27 @@ class EasyLayout extends StatelessWidget {
   final bool merge;
 
   /// Horizontal spacing
-  final double hSpacing;
+  final double? hSpacing;
 
   /// Vertical spacing
-  final double vSpacing;
+  final double? vSpacing;
 
   const EasyLayout({
-    Key key,
+    Key? key,
     this.hSpacing,
     this.vSpacing,
-    @required this.child,
+    required this.child,
     this.merge = true,
-  })  : assert(child != null),
-        super(key: key);
+  }) : super(key: key);
 
-  static EasyLayoutScope of(BuildContext context) {
+  static EasyLayoutScope? of(BuildContext context) {
     final scope = context.dependOnInheritedWidgetOfExactType<EasyLayoutScope>();
     return scope;
   }
 
   @override
   Widget build(BuildContext context) {
-    final EasyLayoutScope parent =
+    final EasyLayoutScope? parent =
         (merge && ((hSpacing == null) || (vSpacing == null)))
             ? EasyLayout.of(context)
             : null;
@@ -78,10 +77,10 @@ class EasyLayoutScope extends InheritedWidget {
   final double vSpacing;
 
   EasyLayoutScope({
-    Key key,
-    @required Widget child,
-    @required this.hSpacing,
-    @required this.vSpacing,
+    Key? key,
+    required Widget child,
+    required this.hSpacing,
+    required this.vSpacing,
   }) : super(
           key: key,
           child: child,

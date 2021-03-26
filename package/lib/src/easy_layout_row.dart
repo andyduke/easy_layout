@@ -15,7 +15,7 @@ class EasyLayoutRow extends StatelessWidget {
   final List<Widget> children;
 
   /// Space between children.
-  final double spacing;
+  final double? spacing;
 
   /// How the children should be placed along the main axis.
   final MainAxisAlignment alignment;
@@ -24,17 +24,18 @@ class EasyLayoutRow extends StatelessWidget {
   final bool expand;
 
   const EasyLayoutRow({
-    Key key,
+    Key? key,
     this.spacing,
-    @required this.children,
+    required this.children,
     this.alignment = MainAxisAlignment.spaceBetween,
     this.expand = true,
-  })  : assert(children != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final double hSpacing = spacing ?? EasyLayout.of(context)?.hSpacing ?? 0;
+    final double hSpacing = spacing ??
+        EasyLayout.of(context)?.hSpacing ??
+        EasyLayout.defaultHSpacing;
 
     return Row(
       mainAxisSize: MainAxisSize.max,
@@ -50,8 +51,8 @@ class EasyLayoutRow extends StatelessWidget {
             if (child is Flexible) return child;
             if (child is EasyLayoutSpacing) return child;
 
-            final int flex = (child is EasyLayoutFlexible) ? child.flex : 1;
-            return expand
+            final int? flex = (child is EasyLayoutFlexible) ? child.flex : 1;
+            return (expand && flex != null)
                 ? Expanded(
                     flex: flex,
                     child: child,

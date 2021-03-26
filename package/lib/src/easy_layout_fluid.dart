@@ -17,12 +17,12 @@ import 'easy_layout.dart';
 /// This is a wrapper around the [Fluid] widget (https://pub.dev/packages/fluid_kit).
 ///
 class EasyLayoutFluid extends StatelessWidget {
-  final double hSpacing;
-  final double vSpacing;
+  final double? hSpacing;
+  final double? vSpacing;
   final List<Fluidable> children;
 
   const EasyLayoutFluid({
-    Key key,
+    Key? key,
     this.hSpacing,
     this.vSpacing,
     this.children = const <Fluidable>[],
@@ -30,12 +30,12 @@ class EasyLayoutFluid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final EasyLayoutScope parent = ((hSpacing == null) || (vSpacing == null))
+    final EasyLayoutScope? parent = ((hSpacing == null) || (vSpacing == null))
         ? EasyLayout.of(context)
         : null;
     return Fluid(
-      spacing: hSpacing ?? parent?.hSpacing,
-      lineSpacing: vSpacing ?? parent?.vSpacing,
+      spacing: hSpacing ?? parent?.hSpacing ?? EasyLayout.defaultHSpacing,
+      lineSpacing: vSpacing ?? parent?.vSpacing ?? EasyLayout.defaultVSpacing,
       children: children,
     );
   }
