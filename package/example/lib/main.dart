@@ -106,7 +106,7 @@ class ExampleScreen extends StatelessWidget {
                   ],
                 ),
 
-                // EasyLayoutRow with Dividers
+                // EasyLayoutRow with Spacers and Dividers
                 EasyLayoutRow(
                   children: [
                     Container(
@@ -119,8 +119,15 @@ class ExampleScreen extends StatelessWidget {
                     ),
                     Container(
                       width: 100,
-                      height: 100,
+                      height: 70,
                       color: Colors.teal,
+                    ),
+                    EasyLayoutDivider(
+                      axis: Axis.vertical,
+                      thickness: 2,
+                      color: Colors.red,
+                      startIndent: 10,
+                      endIndent: 10,
                     ),
                     Container(
                       width: 100,
@@ -130,7 +137,39 @@ class ExampleScreen extends StatelessWidget {
                   ],
                 ),
 
-                // Generic Row with Dividers
+                // EasyLayoutColumn with Spacers and Dividers
+                EasyLayoutColumn(
+                  spacing: 8,
+                  children: [
+                    Container(
+                      width: 100,
+                      height: 20,
+                      color: Colors.orange,
+                    ),
+                    EasyLayoutSpacing(
+                        // vSpacing: 30,
+                        ),
+                    Container(
+                      width: 100,
+                      height: 20,
+                      color: Colors.teal,
+                    ),
+                    EasyLayoutDivider(
+                      // axis: Axis.vertical,
+                      thickness: 2,
+                      color: Colors.red,
+                      startIndent: 10,
+                      endIndent: 10,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 20,
+                      color: Colors.amber,
+                    ),
+                  ],
+                ),
+
+                // Generic Row with Spacers
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

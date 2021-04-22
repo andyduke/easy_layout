@@ -229,3 +229,10 @@ This is a wrapper around the [Fluid](https://pub.dev/packages/fluid_kit) widget,
 It is possible to set the spacing between **some** child widgets different from that set in `EasyLayout` using `EasyLayoutSpacing`.
 
 And you can also use `EasyLayoutSpacing` to set the spacing corresponding to that specified in `EasyLayout` for widgets inside `Column`, `Row`, `Flex`.
+
+
+### Divider widget
+
+It is possible to set the spaced divider between **some** child widgets using `EasyLayoutDivider`. `EasyLayoutDivider` cannot be used in `EasyLayoutAuto`.
+
+When used in `EasyLayoutColumn` or `EasyLayoutRow`, you must manually specify the `axis` property (vertical or horizontal).

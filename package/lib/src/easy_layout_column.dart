@@ -1,3 +1,4 @@
+import 'package:easy_layout/easy_layout.dart';
 import 'package:flutter/widgets.dart';
 import '_intersperse.dart';
 import 'easy_layout.dart';
@@ -36,7 +37,8 @@ class EasyLayoutColumn extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: intersperseCustom<Widget>(
         (element, previous) {
-          if (element is EasyLayoutSpacing || previous is EasyLayoutSpacing)
+          if ((element is EasyLayoutSpacing || previous is EasyLayoutSpacing) ||
+              (element is EasyLayoutDivider || previous is EasyLayoutDivider))
             return null;
           return SizedBox(height: vSpacing);
         },

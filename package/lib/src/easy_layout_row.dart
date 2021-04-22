@@ -1,3 +1,4 @@
+import 'package:easy_layout/easy_layout.dart';
 import 'package:flutter/widgets.dart';
 import '_intersperse.dart';
 import 'easy_layout.dart';
@@ -36,20 +37,26 @@ class EasyLayoutRow extends StatelessWidget {
     final double hSpacing = spacing ??
         EasyLayout.of(context)?.hSpacing ??
         EasyLayout.defaultHSpacing;
+    bool hasVerticalDividers = false;
 
-    return Row(
+    Widget result = Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: alignment,
       children: intersperseCustom<Widget>(
         (element, previous) {
-          if (element is EasyLayoutSpacing || previous is EasyLayoutSpacing)
+          if ((element is EasyLayoutSpacing || previous is EasyLayoutSpacing) ||
+              (element is EasyLayoutDivider || previous is EasyLayoutDivider))
             return null;
           return SizedBox(width: hSpacing);
         },
         children.map<Widget>(
           (child) {
+            if ((child is EasyLayoutDivider) && (child.axis == Axis.vertical))
+              hasVerticalDividers = true;
+
             if (child is Flexible) return child;
-            if (child is EasyLayoutSpacing) return child;
+            if (child is EasyLayoutSpacing || child is EasyLayoutDivider)
+              return child;
 
             final int? flex = (child is EasyLayoutFlexible) ? child.flex : 1;
             return (expand && flex != null)
@@ -62,5 +69,13 @@ class EasyLayoutRow extends StatelessWidget {
         ),
       ).toList(),
     );
+
+    if (hasVerticalDividers) {
+      result = IntrinsicHeight(
+        child: result,
+      );
+    }
+
+    return result;
   }
 }
