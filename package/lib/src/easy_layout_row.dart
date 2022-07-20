@@ -1,9 +1,6 @@
 import 'package:easy_layout/easy_layout.dart';
 import 'package:flutter/widgets.dart';
 import '_intersperse.dart';
-import 'easy_layout.dart';
-import 'easy_layout_flexible.dart';
-import 'easy_layout_spacing.dart';
 
 /// A widget that displays its children in a horizontal array
 /// like a [Row] widget, but with vertical spacing and
@@ -19,7 +16,10 @@ class EasyLayoutRow extends StatelessWidget {
   final double? spacing;
 
   /// How the children should be placed along the main axis.
-  final MainAxisAlignment alignment;
+  final MainAxisAlignment mainAxisAlignment;
+
+  /// How the children should be placed along the cross axis.
+  final CrossAxisAlignment crossAxisAlignment;
 
   /// Stretch items to fill the entire row.
   final bool expand;
@@ -28,7 +28,8 @@ class EasyLayoutRow extends StatelessWidget {
     Key? key,
     this.spacing,
     required this.children,
-    this.alignment = MainAxisAlignment.spaceBetween,
+    this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
+    this.crossAxisAlignment = CrossAxisAlignment.start,
     this.expand = true,
   }) : super(key: key);
 
@@ -41,7 +42,8 @@ class EasyLayoutRow extends StatelessWidget {
 
     Widget result = Row(
       mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: alignment,
+      mainAxisAlignment: mainAxisAlignment,
+      crossAxisAlignment: crossAxisAlignment,
       children: intersperseCustom<Widget>(
         (element, previous) {
           if ((element is EasyLayoutSpacing || previous is EasyLayoutSpacing) ||

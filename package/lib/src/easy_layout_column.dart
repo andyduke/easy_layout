@@ -1,8 +1,6 @@
 import 'package:easy_layout/easy_layout.dart';
 import 'package:flutter/widgets.dart';
 import '_intersperse.dart';
-import 'easy_layout.dart';
-import 'easy_layout_spacing.dart';
 
 /// A widget that displays its children in a vertical array
 /// like a [Column] widget, but with vertical spacing.
@@ -18,13 +16,18 @@ class EasyLayoutColumn extends StatelessWidget {
 
   /// How the children should be placed along the cross axis.
   /// The default is [CrossAxisAlignment.stretch].
-  final CrossAxisAlignment alignment;
+  final CrossAxisAlignment crossAxisAlignment;
+
+  /// How the children should be placed along the main axis.
+  /// The default is [MainAxisAlignment.start].
+  final MainAxisAlignment mainAxisAlignment;
 
   const EasyLayoutColumn({
     Key? key,
     this.spacing,
     required this.children,
-    this.alignment = CrossAxisAlignment.stretch,
+    this.crossAxisAlignment = CrossAxisAlignment.stretch,
+    this.mainAxisAlignment = MainAxisAlignment.start,
   }) : super(key: key);
 
   @override
@@ -33,7 +36,8 @@ class EasyLayoutColumn extends StatelessWidget {
         EasyLayout.of(context)?.vSpacing ??
         EasyLayout.defaultVSpacing;
     return Column(
-      crossAxisAlignment: alignment,
+      mainAxisAlignment: mainAxisAlignment,
+      crossAxisAlignment: crossAxisAlignment,
       mainAxisSize: MainAxisSize.min,
       children: intersperseCustom<Widget>(
         (element, previous) {
