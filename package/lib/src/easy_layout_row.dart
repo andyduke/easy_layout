@@ -1,9 +1,6 @@
 import 'package:easy_layout/easy_layout.dart';
 import 'package:flutter/widgets.dart';
 import '_intersperse.dart';
-import 'easy_layout.dart';
-import 'easy_layout_flexible.dart';
-import 'easy_layout_spacing.dart';
 
 /// A widget that displays its children in a horizontal array
 /// like a [Row] widget, but with vertical spacing and
@@ -28,7 +25,7 @@ class EasyLayoutRow extends StatelessWidget {
   final MainAxisAlignment? mainAxisAlignment;
 
 
-  /// How the children should be placed along the main axis.
+  /// How the children should be placed along the cross axis.
   /// The default is [CrossAxisAlignment.start].
   final CrossAxisAlignment crossAxisAlignment;
 
