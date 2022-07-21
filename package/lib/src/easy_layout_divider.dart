@@ -1,7 +1,5 @@
 import 'package:easy_layout/easy_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'easy_layout.dart';
 
 /// A thin line widget that takes up a fixed amount of space around the line.
 ///
