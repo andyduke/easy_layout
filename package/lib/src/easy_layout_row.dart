@@ -24,7 +24,6 @@ class EasyLayoutRow extends StatelessWidget {
   /// The default is [MainAxisAlignment.spaceBetween].
   final MainAxisAlignment? mainAxisAlignment;
 
-
   /// How the children should be placed along the cross axis.
   /// The default is [CrossAxisAlignment.start].
   final CrossAxisAlignment crossAxisAlignment;
@@ -40,9 +39,11 @@ class EasyLayoutRow extends StatelessWidget {
     this.mainAxisAlignment,
     this.crossAxisAlignment = CrossAxisAlignment.start,
     this.expand = true,
-  }): assert(alignment == null || mainAxisAlignment == null,
-    '`alignment` is deprecated. Use either `mainAxisAlignment`, or `alignment` for backward compatibility, but not both.',
-  ), super(key: key);
+  })  : assert(
+          alignment == null || mainAxisAlignment == null,
+          '`alignment` is deprecated. Use either `mainAxisAlignment`, or `alignment` for backward compatibility, but not both.',
+        ),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +54,9 @@ class EasyLayoutRow extends StatelessWidget {
 
     Widget result = Row(
       mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: mainAxisAlignment ?? alignment ?? MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: mainAxisAlignment ??
+          alignment ?? // ignore: deprecated_member_use_from_same_package
+          MainAxisAlignment.spaceBetween,
       crossAxisAlignment: crossAxisAlignment,
       children: intersperseCustom<Widget>(
         (element, previous) {

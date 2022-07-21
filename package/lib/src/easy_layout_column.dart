@@ -27,16 +27,18 @@ class EasyLayoutColumn extends StatelessWidget {
   /// The default is [MainAxisAlignment.start].
   final MainAxisAlignment mainAxisAlignment;
 
-  const EasyLayoutColumn({
-    Key? key,
-    this.spacing,
-    required this.children,
-    this.alignment,
-    this.crossAxisAlignment,
-    this.mainAxisAlignment = MainAxisAlignment.start
-  }) : assert(alignment == null || crossAxisAlignment == null,
+  const EasyLayoutColumn(
+      {Key? key,
+      this.spacing,
+      required this.children,
+      this.alignment,
+      this.crossAxisAlignment,
+      this.mainAxisAlignment = MainAxisAlignment.start})
+      : assert(
+          alignment == null || crossAxisAlignment == null,
           '`alignment` is deprecated. Use either `crossAxisAlignment`, or `alignment` for backward compatibility, but not both.',
-  ), super(key: key);
+        ),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,9 @@ class EasyLayoutColumn extends StatelessWidget {
         EasyLayout.of(context)?.vSpacing ??
         EasyLayout.defaultVSpacing;
     return Column(
-      crossAxisAlignment: crossAxisAlignment ?? alignment ?? CrossAxisAlignment.stretch,
+      crossAxisAlignment: crossAxisAlignment ??
+          alignment ?? // ignore: deprecated_member_use_from_same_package
+          CrossAxisAlignment.stretch,
       mainAxisAlignment: mainAxisAlignment,
       mainAxisSize: MainAxisSize.min,
       children: intersperseCustom<Widget>(

@@ -1,3 +1,9 @@
+## 3.0.0
+
+**Breaking change:**
+- **EasyLayoutRow:** `alignment` renamed to `mainAxisAlignment`, added `crossAxisAlignment`;
+- **EasyLayoutColumn:** `alignment` renamed to `crossAxisAlignment`, added `mainAxisAlignment`.
+
 ## 2.0.0
 
 * Added the `EasyLayoutDivider` widget to set the spaced divider.
